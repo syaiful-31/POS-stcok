@@ -23,7 +23,7 @@ Prasyarat umum:
 
 ```bash
 # 1. Ambil kode, pasang dependensi, build
-git clone https://github.com/syaiful-31/POS-manajement-stcok.git pos-app && cd pos-app
+git clone <link> pos-app && cd pos-app
 npm install
 npm run build
 
@@ -69,7 +69,7 @@ sudo systemctl enable --now pos-app
 
 ```bash
 # 1. Ambil kode & konfigurasi
-git clone https://github.com/syaiful-31/POS-manajement-stcok.git pos-app && cd pos-app
+git clone <link> pos-app && cd pos-app
 cp .env.example .env
 #    isi .env — compose membaca file ini; env wajib yang kosong
 #    membuat `docker compose up` GAGAL dengan pesan jelas
@@ -255,5 +255,6 @@ docker-entrypoint.sh            migrasi + seed otomatis di container
 - Better Auth menolak POST tanpa header `Origin` yang cocok (proteksi
   CSRF) dan mewajibkan body JSON valid (mis. `{}` untuk sign-out) —
   relevan untuk klien API non-browser.
-#   P O S - m a n a j e m e n t - s t c o k  
+#   P O S - m a n a j e m e n t - s t c o k 
+ 
  
