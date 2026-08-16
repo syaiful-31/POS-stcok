@@ -23,7 +23,7 @@ Prasyarat umum:
 
 ```bash
 # 1. Ambil kode, pasang dependensi, build
-git clone <url-repo> pos-app && cd pos-app
+git clone https://github.com/syaiful-31/POS-manajement-stcok.git pos-app && cd pos-app
 npm install
 npm run build
 
@@ -69,7 +69,7 @@ sudo systemctl enable --now pos-app
 
 ```bash
 # 1. Ambil kode & konfigurasi
-git clone <url-repo> pos-app && cd pos-app
+git clone https://github.com/syaiful-31/POS-manajement-stcok.git pos-app && cd pos-app
 cp .env.example .env
 #    isi .env — compose membaca file ini; env wajib yang kosong
 #    membuat `docker compose up` GAGAL dengan pesan jelas
