@@ -1,0 +1,14 @@
+node_modules
+.next
+data
+.env
+.env.*
+smoke-shots
+*.log
+.git
+.gitignore
+Dockerfile
+docker-compose.yml
+README.md
+smoke-test.mjs
+api-smoke.mjs

@@ -1,0 +1,21 @@
+services:
+  pos:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: ${DATABASE_URL:-file:./data/pos.db}
+      # URL publik aplikasi (wajib; wajib https:// di produksi internet)
+      BETTER_AUTH_URL: ${BETTER_AUTH_URL:-http://localhost:3000}
+      # Wajib diisi — generate dengan: openssl rand -base64 32
+      BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET:?Isi BETTER_AUTH_SECRET di .env (openssl rand -base64 32)}
+      # Admin pertama — dipakai hanya saat database kosong.
+      # Setelah admin dibuat, user lain dikelola dari menu Pengguna.
+      FIRST_ADMIN_NAME: ${FIRST_ADMIN_NAME:-Administrator}
+      FIRST_ADMIN_EMAIL: ${FIRST_ADMIN_EMAIL:?Isi FIRST_ADMIN_EMAIL di .env}
+      FIRST_ADMIN_PASSWORD: ${FIRST_ADMIN_PASSWORD:?Isi FIRST_ADMIN_PASSWORD di .env (min. 8 karakter)}
+    volumes:
+      - pos-data:/app/data
+
+volumes:
+  pos-data:
