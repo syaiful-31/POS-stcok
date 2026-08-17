@@ -32,6 +32,8 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# template konfigurasi produksi — wajib ikut repo (dipakai README: cp .env.example .env)
+!.env.example
 
 # vercel
 .vercel

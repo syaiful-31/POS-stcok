@@ -3,7 +3,7 @@
 // RBAC, 10 produk FMCG, 6 pelanggan, 3 supplier, pesanan & pembelian
 // historis dengan pergerakan stok yang di-replay sehingga stok akhir
 // konsisten dengan log audit. Idempotent: lewati bila produk sudah ada
-// (FORCE=1 untuk hapus & seed ulang). Jalankan: npm run db:seed
+// (FORCE=1 atau --force untuk hapus & seed ulang). Jalankan: npm run db:seed
 
 import "dotenv/config";
 import { eq } from "drizzle-orm";
@@ -122,13 +122,16 @@ const SUPPLIER_SPECS = [
 
 // ---------- main ----------
 
+// --force (cross-platform, aman di Windows cmd) atau FORCE=1 (env)
+const FORCE = process.env.FORCE === "1" || process.argv.includes("--force");
+
 export async function seed(): Promise<void> {
   const existing = await db.select({ id: schema.products.id }).from(schema.products).limit(1).all();
-  if (existing.length > 0 && process.env.FORCE !== "1") {
-    console.log("Seed dilewati: data sudah ada (pakai FORCE=1 untuk reset).");
+  if (existing.length > 0 && !FORCE) {
+    console.log("Seed dilewati: data sudah ada (pakai FORCE=1 atau --force untuk reset).");
     return;
   }
-  if (process.env.FORCE === "1") {
+  if (FORCE) {
     for (const t of [
       schema.stockMovements, schema.orderItems, schema.orders,
       schema.purchaseItems, schema.purchases,
